@@ -1,0 +1,4 @@
+[patterns]
+**.py = native
+**.vcproj = CRLF
+**.txt = native
