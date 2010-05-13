@@ -4,7 +4,7 @@
 #include "vtkRenderWindow.h"
 #include "vtkRenderWindowInteractor.h"
 #include "vtkPolyDataMapper.h"
-#include "vtkCursor3D.h"
+#include "vtkCamera.h"
 #include "vtkProperty.h"
 
 template<typename T, typename I> class vtkRenderingTestPipeline
@@ -36,25 +36,32 @@ public:
 		filter = t.GetFilter(0);
 
 		// map to graphics library
-		mapper = MapperType::New();
+		mapper = t.GetMapper();
 		mapper->SetInputConnection(filter->GetOutputPort());
-		mapper->ScalarVisibilityOff();
 
 		// actor coordinates geometry, properties, transformation
 		prop = t.GetProp();
 		prop->SetMapper(mapper);
 		mapper->Delete();
 
+		vtkCamera* camera = vtkCamera::New();
+		camera->SetViewUp(0.0, 1.0, 0.0);
+		camera->SetPosition(45.410005000000403, 82.031335999999996, 100.000000000000000);
+		camera->SetFocalPoint(45.410005000000403, 82.031335999999996, 0.000000000000000);
+		camera->SetPosition(0.0, 0.0, 40.0);
+		camera->SetFocalPoint(0.0, 0.0, 0.0);
+		camera->SetDistance(40.0);
+
 		// add the actors to the renders
 		renA->AddActor(prop);
+		renA->SetActiveCamera(camera);
 
 		// get the filter
 		filter = t.GetFilter(1);
 
 		// map to graphics library
-		mapper = MapperType::New();
+		mapper = t.GetMapper();
 		mapper->SetInputConnection(filter->GetOutputPort());
-		mapper->ScalarVisibilityOff();
 
 		// actor coordinates geometry, properties, transformation
 		prop = t.GetProp();
@@ -63,6 +70,7 @@ public:
 
 		// add the actors to the renders
 		renB->AddActor(prop);
+		renB->SetActiveCamera(camera);
 
 		/*
 		mapper = T::MapperType::New();
@@ -73,8 +81,8 @@ public:
 		renB->AddActor(prop);
 		renB->ResetCamera();
 		*/
-		renA->SetBackground(1,1,1); // Background color white
-		renB->SetBackground(1,1,1);
+		renA->SetBackground(0.2,0.2,0.2);
+		renB->SetBackground(0.2,0.2,0.2);
 
 		// an interactor
 		vtkRenderWindowInteractor *iren = vtkRenderWindowInteractor::New();
