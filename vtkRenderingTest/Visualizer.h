@@ -4,6 +4,7 @@ class vtkActor;
 class vtkRenderer;
 class vtkRenderWindow;
 
+/** Help visualize the scene. */
 class Visualizer
 {
 public:

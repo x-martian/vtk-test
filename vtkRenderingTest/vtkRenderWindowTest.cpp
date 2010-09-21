@@ -7,6 +7,7 @@
 
 class vtkCommand;
 
+// test the properties that is invariant during start and render
 void vtkRenderWidnowInvariantDuringStartandRender(vtkRenderWindow* win, lemon::test<>& t, bool on)
 {
 	on && t.not_ok(win->GetFullScreen()!=0, "Default is not full screen");
@@ -74,13 +75,29 @@ bool vtkRenderWindowTest(vtkRenderWindow*& win, bool on)
 	on && t.is(win->GetNeverRendered(), 1, "never rendered true after Start()");
 	win->Render();
 	on && t.is(win->GetNeverRendered(), 0, "never rendered false after Render()");
+	float rgba[4];
+	rgba[0] = 1.0;
+	rgba[1] = 0.5;
+	rgba[2] = 0.0;
+	rgba[3] = 0.5;
+
+	win->SetRGBAPixelData(0,0,0,0, rgba, 1, 1);
+	float* rgbaPixelData = win->GetRGBAPixelData(0,0,0,0,1);
+	on && t.is(unsigned(rgbaPixelData[0]*255.0+0.5), 128, "The final pixel value is the nearest integer of the value multiplied by the color depth");
+	on && t.is(unsigned(rgbaPixelData[1]*255.0+0.5), 64, "");
+	on && t.is(rgbaPixelData[3], 1.0, "the alpha is always one");
 
 	vtkRenderWidnowInvariantDuringStartandRender(win, t, on);
 
 	on && t.is(win->GetRenderers()->GetNumberOfItems(), 0, "no renderers");
 
-	//on && t.isnt(win->GetSize()[0], win->GetScreenSize()[0], "default window is not full screen");
-	//on && t.is(win->GetScreenSize()[0], win->GetSize()[0], "BAD: GetScreenSize() resizes the render window");
+	double size[2], screenSize[2];
+	memcpy(size, win->GetSize(), 2*sizeof(double));
+	memcpy(screenSize, win->GetScreenSize(), 2*sizeof(double));
+	on && t.isnt(size[0], screenSize[0], "default window is not full screen");
+
+	on && t.is(win->GetSize()[0], win->GetScreenSize()[0], "default window is not full screen");
+	on && t.isnt(win->GetScreenSize()[0], win->GetSize()[0], "BAD: GetScreenSize() resizes the render window");
 
 	vtkRenderer* rndrr = 0;
 	vtkRendererTest(rndrr, false);

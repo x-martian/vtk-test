@@ -11,17 +11,14 @@ vtkActor* actor;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	bool result = true;
-	result = result && vtkActor2DTest(true);
+	bool ok = true;
+	ok = ok && vtkActor2DTest(true);
+	ok = ok && vtkActorPositionTest(true);
+	ok = ok && vtkActorOriginTest(true);
+	ok = ok && vtkActorTest(actor);
+	ok = ok && vtkRenderWindowTest(win);
+	ok = ok && vtkRendererTest(rndrr);
 
-	/*
-		   vtkActorPositionTest(true)
-	    && vtkActorOriginTest(true)
-		&& vtkActorTest(actor)
-		&& vtkRenderWindowTest(win)
-		&& vtkRendererTest(rndrr)
-		;
-		*/
-	return result;
+	return ok;
 }
 

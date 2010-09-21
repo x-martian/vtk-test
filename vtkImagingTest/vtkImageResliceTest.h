@@ -7,9 +7,7 @@ class vtkPolyDataMapper;
 class vtkImageResliceDriver
 {
 public:
-	typedef vtkPolyData DataType;
 	typedef vtkImageReslice FilterType;
-	typedef vtkPolyDataMapper MapperType;
 
 	vtkImageResliceDriver(void);
 	~vtkImageResliceDriver(void);
