@@ -1,5 +1,7 @@
 #include "vtkRenderer.h"
+#include "vtkRenderWindow.h"
 #include "vtkCamera.h"	// should not need it here
+#include "vtkRendererCollection.h"
 #include "vtkActorCollection.h"
 #include "vtkActor2DCollection.h"
 #include "vtkRenderingTest.h"
@@ -40,10 +42,41 @@ bool vtkRendererTest(vtkRenderer*& out, bool on)
 	actor->GetBounds(bounds);
 
 	if(on) camera->PrintSelf(std::cout, vtkIndent(3));
+	double planes[24];
+	camera->GetFrustumPlanes(1.0, planes);
+	camera->ParallelProjectionOn();
+	camera->GetFrustumPlanes(1.0, planes);
 
 	on && t.is(out->GetActors()->GetNumberOfItems(), 1, "added one actor");
 
 	on && t.is(out->GetRenderWindow(), (void*)0, "no render window");
+
+	vtkRenderWindow* win;
+	vtkRenderWindowTest(win, false);
+
+	on && t.is(win->GetRenderers()->GetNumberOfItems(), 0, "Verifying no renderer in the render window initially");
+	win->AddRenderer(out);
+	on && t.is(win->GetRenderers()->GetNumberOfItems(), 1, "Verifying render has been added");
+	on && t.is(out->GetRenderWindow(), win, "Verifying GetRenderWindow()");
+	double displayPoint[3];
+	out->GetDisplayPoint(displayPoint);
+	int* origin = out->GetOrigin();
+	int* size = out->GetSize();
+	double viewPoint[3];
+	out->GetViewPoint(viewPoint);
+	double viewPort[4];
+	out->GetViewport(viewPort);
+	double worldPoint[4];
+	out->GetWorldPoint(worldPoint);
+
+	double wx=0, wy=0, wz=0.99;
+	out->WorldToView(wx, wy, wz);
+	wz = -999.01;
+	out->WorldToView(wx, wy, wz);
+	wz = -1000.01;
+	out->WorldToView(wx, wy, wz);
+	out->DisplayToWorld();
+	out->GetWorldPoint(worldPoint);
 
 	if(on) out->PrintSelf(std::cout, vtkIndent(1));
 

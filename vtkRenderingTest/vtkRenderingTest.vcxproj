@@ -165,12 +165,14 @@
   <ItemGroup>
     <ClCompile Include="SpherePipeline.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="TestConversion.cpp" />
     <ClCompile Include="Visualizer.cpp" />
     <ClCompile Include="vtkActor2DTest.cpp" />
     <ClCompile Include="vtkActorTest.cpp" />
     <ClCompile Include="vtkRendererTest.cpp" />
     <ClCompile Include="vtkRenderingTest.cpp" />
     <ClCompile Include="vtkRenderWindowTest.cpp" />
+    <ClCompile Include="vtkViewPortTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpherePipeline.h" />
@@ -180,6 +182,7 @@
     <ClInclude Include="vtkActor2DTest.h" />
     <ClInclude Include="vtkRenderingTest.h" />
     <ClInclude Include="vtkRenderingTestPipeline.h" />
+    <ClInclude Include="vtkViewPortTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

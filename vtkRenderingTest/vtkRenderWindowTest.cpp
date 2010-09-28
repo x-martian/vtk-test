@@ -1,7 +1,6 @@
 // vtkRenderWindowTest.cpp
 
 #include "vtkRenderWindow.h"
-#include "vtkRendererCollection.h"
 #include "vtkRenderingTest.h"
 #include "../lemon.h"
 
@@ -89,8 +88,6 @@ bool vtkRenderWindowTest(vtkRenderWindow*& win, bool on)
 
 	vtkRenderWidnowInvariantDuringStartandRender(win, t, on);
 
-	on && t.is(win->GetRenderers()->GetNumberOfItems(), 0, "no renderers");
-
 	double size[2], screenSize[2];
 	memcpy(size, win->GetSize(), 2*sizeof(double));
 	memcpy(screenSize, win->GetScreenSize(), 2*sizeof(double));
@@ -98,11 +95,6 @@ bool vtkRenderWindowTest(vtkRenderWindow*& win, bool on)
 
 	on && t.is(win->GetSize()[0], win->GetScreenSize()[0], "default window is not full screen");
 	on && t.isnt(win->GetScreenSize()[0], win->GetSize()[0], "BAD: GetScreenSize() resizes the render window");
-
-	vtkRenderer* rndrr = 0;
-	vtkRendererTest(rndrr, false);
-	win->AddRenderer(rndrr);
-	on && t.is(win->GetRenderers()->GetNumberOfItems(), 1, "added renders");
 
 	if (on) win->PrintSelf(std::cout, vtkIndent());
 

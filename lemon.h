@@ -155,12 +155,27 @@ namespace lemon {
     num_skipped_(0),
     num_failed_(0),
     num_planned_(num_planned_tests),
+	indent_(0),
     skip_enabled_(false),
     todo_enabled_(false)
   {
     if (num_planned_tests > 0) {
       output_ << "1.." << num_planned_tests << "\n";
     }
+  }
+
+  test (const test& source)
+	  : num_tests_(source.num_tests_),
+	  test_number_(source.test_number_),
+	  num_skipped_(source.num_skipped_),
+	  num_failed_(source.num_failed_),
+	  num_planned_(source.num_planned_),
+	  indent_(source.indent),
+	  skip_enabled_(source.skip_enabled_),
+	  todo_enabled_(source.todo_enabled_),
+	  output_(source.output_)
+  {
+	  ++indent_;
   }
   
   /////////////////////////////////////////////////////////////////////////////
@@ -414,7 +429,7 @@ namespace lemon {
     return num_skipped_;
   }
 
-  double dbl_rnd() {
+  static double dbl_rnd() {
 	  return rand()/(double)RAND_MAX - 0.5;
   }
 
@@ -424,6 +439,7 @@ namespace lemon {
   unsigned int    num_skipped_; // The number of tests marked as skipped
   unsigned int    num_failed_; // The number of tests marked as failing
   unsigned int    num_planned_; // The number of tests planned to be run
+  unsigned int    indent_;
   bool            skip_enabled_; // Are tests being skipped
   bool            todo_enabled_; // Are these tests incomplete
   output_policy_t output_; // The place where output will be sent
