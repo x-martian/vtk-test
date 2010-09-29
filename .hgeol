@@ -2,3 +2,5 @@
 **.py = native
 **.vcproj = CRLF
 **.txt = native
+**.cpp = native
+**.h = native

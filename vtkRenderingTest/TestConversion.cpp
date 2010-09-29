@@ -384,6 +384,7 @@ int coordinateConversion( int ac, _TCHAR* av[] )
     renderWindow = vtkRenderWindow::New();
 
     renderer = vtkRenderer::New();
+    renderer->SetViewport(0.47, 0.0, 0.9, 1.0);
     renderWindow->AddRenderer( renderer );
 
     camera = renderer->GetActiveCamera();
@@ -396,7 +397,7 @@ int coordinateConversion( int ac, _TCHAR* av[] )
     setupCamera( 5, 15 );
     testEquivalentTransforms( "Parallel projection, 5x15 window" );
 
-    setupCamera( 15, 5 );
+    setupCamera( 15, 15 );
     testEquivalentTransforms( "Parallel projection, 15x5 window" );
 
     return numFailedAssertions;
