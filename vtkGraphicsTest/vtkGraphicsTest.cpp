@@ -6,7 +6,7 @@
 #include "vtkCutterTest.h"
 #include "vtkCursor2DTest.h"
 
-int _tmain(int argc, _TCHAR* argv[])
+bool vtkGraphicsTest(bool on)
 {
 	bool result = true;
 	result = result && vtkCutterTest(true);

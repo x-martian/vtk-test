@@ -379,12 +379,12 @@ void testEquivalentTransforms( std::string testName )
 }
 
 
-int coordinateConversion( int ac, _TCHAR* av[] )
+int coordinateConversion(void)
 {
     renderWindow = vtkRenderWindow::New();
 
     renderer = vtkRenderer::New();
-    renderer->SetViewport(0.47, 0.0, 0.9, 1.0);
+	renderer->SetViewport(0.47, 0.0, 0.9, 1.0);
     renderWindow->AddRenderer( renderer );
 
     camera = renderer->GetActiveCamera();

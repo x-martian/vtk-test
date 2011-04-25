@@ -5,6 +5,7 @@
 #include "vtkRenderWindow.h"
 #include "vtkRenderWindowInteractor.h"
 #include "vtkInteractorStyleImage.h"
+#include "vtkCamera.h"
 
 template<typename T> class vtkImagingTestPipelineTemplate
 {
@@ -29,8 +30,8 @@ public:
 		// renderers and render window
 		vtkRenderer *renA = vtkRenderer::New();
 		renA->SetViewport(0.0, 0.0, 0.5, 1.0);
-//		vtkRenderer *renB = vtkRenderer::New();
-//		renB->SetViewport(0.5, 0.0, 1.0, 1.0);
+//		vtkCamera* camera = renA->GetActiveCameraAndResetIfCreated();
+//		camera->SetParallelProjection(1);
 
 		win = vtkRenderWindow::New();
 		win->SetSize(600,300);
@@ -54,6 +55,10 @@ public:
 //		renB->SetBackground(1,1,1);
 
 		// render an image (lights and cameras are created automatically)
+		win->Start();
+		std::string windowName("vtkImaging Test - ");
+		windowName.append(t.Name());
+		win->SetWindowName(windowName.c_str());
 		win->Render();
 	}
 

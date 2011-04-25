@@ -117,7 +117,7 @@ public:
 
 		HDC hdc = GetDC(NULL);
 		COLORREF color = GetPixel(hdc, x, y);
-
+/*
 		for (int i=30; i<rect.right; ++i)
 			for (int j=30; j<rect.bottom; ++j)
 			{
@@ -126,7 +126,7 @@ public:
 					MessageBeep(1);
 				}
 			}
-
+*/
 		ReleaseDC(hWnd, hdc);
 
 		return color;

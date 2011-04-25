@@ -27,13 +27,6 @@
 #include "vtkTransform.h"
 #include "vtkCommand.h"
 #include "vtkInteractorStyle.h"
-#include "qzRTStructureSet.h"
-#include "qzStructureSetModule.h"
-#include "qzStructureSetIE.h"
-#include "qzStructureSetROI.h"
-#include "qzRTContour.h"
-#include "qzROIContour.h"
-
 
 
 #include "vtkGraphicsTestPipelineTemplate.h"

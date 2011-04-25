@@ -13,6 +13,8 @@ public:
 	~vtkImageResliceDriver(void);
 
 	FilterType* GetFilter();
+
+	const char* Name() const {return "vtkImageReslice";}
 };
 
 bool vtkImageResliceTest(bool on);

@@ -4,10 +4,10 @@
 #include "stdafx.h"
 #include "vtkImageDataTest.h"
 
-int _tmain(int argc, _TCHAR* argv[])
+bool vtkFilteringTest(bool on)
 {
-	bool result = true;
+	bool result = on;
 	result = result && vtkImageDataTest::Run(true);
-	return 0;
+	return result || !on;
 }
 

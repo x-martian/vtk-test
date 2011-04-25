@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "vtkImageResliceTest.h"
 
-int _tmain(int argc, _TCHAR* argv[])
+bool vtkImagingTest(bool on)
 {
 	bool rv = true;
 	rv = rv && vtkImageResliceTest(true);

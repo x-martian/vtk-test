@@ -9,11 +9,11 @@ vtkRenderWindow* win;
 vtkRenderer* rndrr;
 vtkActor* actor;
 
-int coordinateConversion(int ac, _TCHAR* av[]);
+int coordinateConversion(void);
 
-int _tmain(int argc, _TCHAR* argv[])
+bool vtkRenderingTest(bool on)
 {
-	coordinateConversion(argc, argv);
+	coordinateConversion();
 
 	bool ok = true;
 	ok = ok && vtkRendererTest(rndrr);
@@ -23,6 +23,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	ok = ok && vtkActorTest(actor);
 	ok = ok && vtkRenderWindowTest(win);
 
-	return ok ? 0 : 1;
+	return ok;
 }
 
