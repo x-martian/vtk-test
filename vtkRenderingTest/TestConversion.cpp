@@ -86,8 +86,8 @@ static void setupCamera( int width, int height )
 {
     renderWindow->SetSize( width, height );
 
-    double xFocal = ( width - 1 ) / 2.0;
-    double yFocal = ( height - 1 ) / 2.0;
+    double xFocal = 0.0;
+    double yFocal = 0.0;
 
     camera->SetViewUp( 0, 1, 0 );
     camera->SetFocalPoint( xFocal, yFocal, 0 );
@@ -384,14 +384,14 @@ int coordinateConversion(void)
     renderWindow = vtkRenderWindow::New();
 
     renderer = vtkRenderer::New();
-	renderer->SetViewport(0.47, 0.0, 0.9, 1.0);
+    renderer->SetViewport(0.25, 0.0, 0.75, 1.0);
     renderWindow->AddRenderer( renderer );
 
     camera = renderer->GetActiveCamera();
 
     coordinate = vtkCoordinate::New();
 
-    setupCamera( 5, 5 );
+    setupCamera( 20, 10 );
     testEquivalentTransforms( "Parallel projection, 5x5 window" );
 
     setupCamera( 5, 15 );

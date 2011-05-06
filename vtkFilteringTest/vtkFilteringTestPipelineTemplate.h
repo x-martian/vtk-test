@@ -90,6 +90,8 @@ public:
 
 	~vtkFilteringTestPipelineTemplate(void)
 	{
+		if (win)
+			win->Delete();
 	}
 
 	void StartInteraction(void)

@@ -321,6 +321,16 @@ namespace lemon {
     return passed;
   }
 
+  template<>
+  bool is<double, double>(const double& this_one, const double& that_one, const std::string& test_name)
+  {
+	  char b1[16], b2[16];
+	  sprintf(b1, "%15.8g", this_one);
+	  sprintf(b2, "%15.8g", that_one);
+	  return is(std::string(b1), std::string(b2), test_name);
+  }
+
+
   /////////////////////////////////////////////////////////////////////////////
   // Function: isnt
   //

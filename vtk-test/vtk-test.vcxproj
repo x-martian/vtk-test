@@ -146,6 +146,9 @@
     <ClCompile Include="vtk-test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\vtkCommonTest\vtkCommonTest.vcxproj">
+      <Project>{ef56d6d9-4583-40ab-9ab8-df4ccb63c234}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\vtkFilteringTest\vtkFilteringTest.vcxproj">
       <Project>{52de6d53-00f2-436d-a0c3-2ad96e8a6b7c}</Project>
     </ProjectReference>

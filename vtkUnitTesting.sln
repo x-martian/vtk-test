@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vtkWidgetTest", "vtkWidgetT
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vtk-test", "vtk-test\vtk-test.vcxproj", "{268BEB4E-2BA8-4A23-B72E-D72E2E76E254}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vtkCommonTest", "vtkCommonTest\vtkCommonTest.vcxproj", "{EF56D6D9-4583-40AB-9AB8-DF4CCB63C234}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -64,6 +66,13 @@ Global
 		{268BEB4E-2BA8-4A23-B72E-D72E2E76E254}.Release|Win32.ActiveCfg = Release|Win32
 		{268BEB4E-2BA8-4A23-B72E-D72E2E76E254}.Release|Win32.Build.0 = Release|Win32
 		{268BEB4E-2BA8-4A23-B72E-D72E2E76E254}.Release|x64.ActiveCfg = Release|Win32
+		{EF56D6D9-4583-40AB-9AB8-DF4CCB63C234}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EF56D6D9-4583-40AB-9AB8-DF4CCB63C234}.Debug|Win32.Build.0 = Debug|Win32
+		{EF56D6D9-4583-40AB-9AB8-DF4CCB63C234}.Debug|x64.ActiveCfg = Debug|x64
+		{EF56D6D9-4583-40AB-9AB8-DF4CCB63C234}.Debug|x64.Build.0 = Debug|x64
+		{EF56D6D9-4583-40AB-9AB8-DF4CCB63C234}.Release|Win32.ActiveCfg = Release|Win32
+		{EF56D6D9-4583-40AB-9AB8-DF4CCB63C234}.Release|Win32.Build.0 = Release|Win32
+		{EF56D6D9-4583-40AB-9AB8-DF4CCB63C234}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
