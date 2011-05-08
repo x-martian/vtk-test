@@ -41,7 +41,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
@@ -94,7 +94,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\..\IMAGING\Install\VTK\include\vtk-5.6</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\source\Common;..\..\source\Rendering;..\..\source\Filtering;..\..\source\Graphics;..\..\bin</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,6 +129,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\source\Common;..\..\source\Rendering;..\..\source\Filtering;..\..\source\Graphics;..\..\bin</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,12 +143,14 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="vtkFilteringTestPipelineTemplate.h" />
     <ClInclude Include="vtkImageDataTest.h" />
+    <ClInclude Include="vtkPolyDataTest.h" />
     <ClInclude Include="vtkViewportTest.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="vtkFilteringTest.cpp" />
     <ClCompile Include="vtkImageDataTest.cpp" />
+    <ClCompile Include="vtkPolyDataTest.cpp" />
     <ClCompile Include="vtkViewportTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

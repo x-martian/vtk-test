@@ -99,8 +99,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\..\bin\vtk\bin\Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vtkRendering.lib;vtkCommon.lib;vtkFiltering.lib;vtkGraphics.lib;vtkImaging.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\bin\bin\Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>vtkDICOMParser.lib;vtkNetCDF.lib;vtkmetaio.lib;vtksqlite.lib;vtkpng.lib;vtkzlib.lib;vtkjpeg.lib;vtktiff.lib;vtkexpat.lib;vtkIO.lib;vtkImaging.lib;vtkftgl.lib;vtkfreetype.lib;vtksys.lib;vtkRendering.lib;vtkCommon.lib;vtkFiltering.lib;vtkGraphics.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -135,6 +135,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>vtkDICOMParser.lib;vtkNetCDF.lib;vtkmetaio.lib;vtksqlite.lib;vtkpng.lib;vtkzlib.lib;vtkjpeg.lib;vtktiff.lib;vtkexpat.lib;vtkIO.lib;vtkImaging.lib;vtkftgl.lib;vtkfreetype.lib;vtksys.lib;vtkRendering.lib;vtkCommon.lib;vtkFiltering.lib;vtkGraphics.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\bin\bin\Release</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
