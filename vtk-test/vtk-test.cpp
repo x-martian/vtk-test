@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 
+bool vtkWidgetsTest(bool on);
 bool vtkRenderingTest(bool on);
 bool vtkGraphicsTest(bool on);
 bool vtkFilteringTest(bool on);
@@ -11,8 +12,9 @@ bool vtkCommonTest(bool on);
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	int count = 5;
-	bool result = true;
+    int count = 6;
+    bool result = true;
+    result = result && vtkWidgetsTest(true) && --count;
     result = result && vtkCommonTest(true) && --count;
 	result = result && vtkFilteringTest(true) && --count;
 	result = result && vtkRenderingTest(true) && --count;

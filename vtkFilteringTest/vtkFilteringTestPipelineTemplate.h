@@ -52,7 +52,6 @@ public:
 		I* style = I::New();
 		iren->SetRenderWindow(win);
 
-		// render an image (lights and cameras are created automatically)
 		win->Render();
 	}
 

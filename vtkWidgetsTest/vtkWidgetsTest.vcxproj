@@ -19,18 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{268BEB4E-2BA8-4A23-B72E-D72E2E76E254}</ProjectGuid>
+    <ProjectGuid>{8A2B03F9-6836-401D-9E12-07DFA66CB111}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>vtktest</RootNamespace>
+    <RootNamespace>vtkWidgetTest</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -41,7 +41,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
@@ -94,13 +94,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\source\Widgets;..\..\source\Imaging;..\..\source\Common;..\..\source\Rendering;..\..\source\Filtering;..\..\source\Graphics;..\..\bin;..\..\bin\Rendering;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\bin\bin\Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vtkWidgets.lib;vtkDICOMParser.lib;vtkNetCDF.lib;vtkmetaio.lib;vtksqlite.lib;vtkpng.lib;vtkzlib.lib;vtkjpeg.lib;vtktiff.lib;vtkexpat.lib;vtkIO.lib;vtkImaging.lib;vtkftgl.lib;vtkfreetype.lib;vtksys.lib;vtkRendering.lib;vtkCommon.lib;vtkFiltering.lib;vtkGraphics.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -129,43 +127,26 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\source\Widgets;..\..\source\Imaging;..\..\source\Common;..\..\source\Rendering;..\..\source\Filtering;..\..\source\Graphics;..\..\bin;..\..\bin\Rendering;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>vtkWidgets.lib;vtkDICOMParser.lib;vtkNetCDF.lib;vtkmetaio.lib;vtksqlite.lib;vtkpng.lib;vtkzlib.lib;vtkjpeg.lib;vtktiff.lib;vtkexpat.lib;vtkIO.lib;vtkImaging.lib;vtkftgl.lib;vtkfreetype.lib;vtksys.lib;vtkRendering.lib;vtkCommon.lib;vtkFiltering.lib;vtkGraphics.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\bin\bin\Release</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="vtkBalloonWidgetTest.h" />
+    <ClInclude Include="vtkWidgetsTest.h" />
+    <ClInclude Include="vtkWidgetsTestPipelineTemplate.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="vtk-test.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\vtkCommonTest\vtkCommonTest.vcxproj">
-      <Project>{ef56d6d9-4583-40ab-9ab8-df4ccb63c234}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\vtkFilteringTest\vtkFilteringTest.vcxproj">
-      <Project>{52de6d53-00f2-436d-a0c3-2ad96e8a6b7c}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\vtkGraphicsTest\vtkGraphicsTest.vcxproj">
-      <Project>{eb7dcb04-c3ea-4ca2-ad6e-6790d89d58f5}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\vtkImagingTest\vtkImagingTest.vcxproj">
-      <Project>{751bc0d9-03d2-45b2-a697-7e9ab92d1443}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\vtkRenderingTest\vtkRenderingTest.vcxproj">
-      <Project>{5433b26f-7caa-4d06-b790-b37ca3706302}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\vtkWidgetsTest\vtkWidgetsTest.vcxproj">
-      <Project>{8a2b03f9-6836-401d-9e12-07dfa66cb111}</Project>
-    </ProjectReference>
+    <ClCompile Include="vtkBalloonWidgetTest.cpp" />
+    <ClCompile Include="vtkWidgetsTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

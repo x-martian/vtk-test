@@ -9,7 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vtkImagingTest", "vtkImagin
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vtkFilteringTest", "vtkFilteringTest\vtkFilteringTest.vcxproj", "{52DE6D53-00F2-436D-A0C3-2AD96E8A6B7C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vtkWidgetTest", "vtkWidgetTest\vtkWidgetTest.vcxproj", "{8A2B03F9-6836-401D-9E12-07DFA66CB111}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vtkWidgetsTest", "vtkWidgetsTest\vtkWidgetsTest.vcxproj", "{8A2B03F9-6836-401D-9E12-07DFA66CB111}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vtk-test", "vtk-test\vtk-test.vcxproj", "{268BEB4E-2BA8-4A23-B72E-D72E2E76E254}"
 EndProject

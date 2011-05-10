@@ -1,0 +1,5 @@
+#ifndef VTK_WIDGET_TEST_INCLUDED
+#define VTK_WIDGET_TEST_INCLUDED
+
+
+#endif
