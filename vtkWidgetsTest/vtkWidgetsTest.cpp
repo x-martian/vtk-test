@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include "vtkTextWidgetTest.h"
 #include "vtkBalloonWidgetTest.h"
 
 bool vtkWidgetsTest(bool on)
@@ -10,6 +11,7 @@ bool vtkWidgetsTest(bool on)
         return !on;
 
 	bool ok = true;
+    ok = ok && vtkTextWidgetTest::Run(true);
     ok = ok && vtkBalloonWidgetTest::Run(true);
 
 	return ok;

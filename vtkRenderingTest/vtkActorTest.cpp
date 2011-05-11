@@ -1,4 +1,6 @@
+#include "vtkActorTest.h"
 #include "vtkActor.h"
+#include "vtkPolyDataTest.h"
 #include "SpherePipeline.h"
 #include "vtkSphereSource.h"
 #include "vtkPolyDataMapper.h"
@@ -107,13 +109,6 @@ bool vtkActorOriginTest(bool on)
 	return t.done();
 }
 
-class vtkActorTest
-{
-public:
-	typedef vtkSphereSource SourceType;
-	typedef vtkPolyDataMapper MapperType;
-};
-
 bool vtkActorOriginTest()
 {
 	lemon::test<> t;
@@ -122,4 +117,16 @@ bool vtkActorOriginTest()
 	vtkPipelineTemplate<vtkActorTest> pipeline(actorTest);
 */
 	return t.done();
+}
+
+vtkActor* vtkActorTest::MakeBoxPolyDataActor()
+{
+    vtkPolyData* poly = vtkPolyDataTest::MakeBox(0.0,0.0,0.0,3.0,2.0,1.5);
+    vtkPolyDataMapper* mapper = vtkPolyDataMapper::New();
+    mapper->SetInput(poly);
+    poly->Delete();
+    vtkActor* actor = vtkActor::New();
+    actor->SetMapper(mapper);
+    mapper->Delete();
+    return actor;
 }
