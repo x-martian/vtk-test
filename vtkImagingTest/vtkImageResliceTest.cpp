@@ -34,7 +34,9 @@ vtkImageResliceDriver::FilterType* vtkImageResliceDriver::GetFilter()
 	vtkMatrix4x4* matrix = vtkMatrix4x4::New();
 	matrix->DeepCopy(axes);
 	reslice->SetResliceAxes(matrix);
+    matrix->Delete();
 	reslice->SetInput(img3D);
+    img3D->Delete();
 	reslice->Update();
 
 	return reslice;
@@ -56,9 +58,11 @@ bool vtkImageResliceTest(bool on)
 	vtkImageReslice* reslice = vtkImageReslice::New();
 	reslice->SetOutputDimensionality(2);
 	reslice->SetResliceAxes(resliceAxes);
+    resliceAxes->Delete();
 	reslice->SetInterpolationModeToLinear();
 	reslice->InterpolateOff();
 	reslice->SetInput(img3D);
+    img3D->Delete();
 
 	t.diag("The colums corresponding to the direction cosines of the slice plan");
 	t.is(reslice->GetResliceAxesDirectionCosines()[0], 1, "column 1");
@@ -93,6 +97,7 @@ bool vtkImageResliceTest(bool on)
 	t.is(data[0], 0, "the value of first voxel");
 	t.is(data[inc[0]], /*(i+j+k) of the img3D*/(1+0+0)*100, "the value of voxel incremented in x-direction of the output image");
 	t.is(data[inc[1]], /*(i+j+k) of the img3D*/(0+1+0)*100, "the value of voxel incremented in y-direction of the output image");
+    reslice->Delete();
 
 	vtkImageResliceDriver driver;
 	vtkImagingTestPipelineTemplate<vtkImageResliceDriver> pipeline(driver);

@@ -49,7 +49,11 @@ vtkPolyDataTest::MapperType* vtkPolyDataTest::GetMapper()
 
 vtkPolyDataTest::FilterType* vtkPolyDataTest::GetFilter()
 {
-    return vtkPolyDataTest::MakeBox(0.1,0.2,-0.05,3.3,2.2,1.1)->GetProducerPort()->GetProducer();
+    vtkPolyData* poly = vtkPolyDataTest::MakeBox(0.1,0.2,-0.05,3.3,2.2,1.1);
+    FilterType* filter = poly->GetProducerPort()->GetProducer();
+    filter->Register(0);
+    poly->Delete();
+    return filter;
 }
 
 vtkPolyDataTest::PropType* vtkPolyDataTest::GetProp()

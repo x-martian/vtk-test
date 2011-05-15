@@ -28,4 +28,5 @@ bool vtkWindowTest::Run(bool on)
     vtkWindow* win = MakeWindow();
     t.is(win->GetSize()[0], 10, "verifying GetSize[0]");
     t.is(win->GetSize()[1], 10, "verifying GetSize[1]");
+    win->Delete();
 }

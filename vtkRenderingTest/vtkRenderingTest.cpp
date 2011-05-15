@@ -13,16 +13,17 @@ int coordinateConversion(void);
 
 bool vtkRenderingTest(bool on)
 {
-	coordinateConversion();
+    if (on) {
+        //coordinateConversion();
+        on = on && vtkRendererTest(true);
+        on = on && vtkActor2DTest(false);
+        on = on && vtkActorPositionTest(false);
+        on = on && vtkActorOriginTest(false);
+        //on = on && vtkActorTest(actor);
+        //on = on && vtkRenderWindowTest(win);
+        return on;
+    }
 
-	bool ok = true;
-	ok = ok && vtkRendererTest(rndrr);
-	ok = ok && vtkActor2DTest(true);
-	ok = ok && vtkActorPositionTest(true);
-	ok = ok && vtkActorOriginTest(true);
-	ok = ok && vtkActorTest(actor);
-	ok = ok && vtkRenderWindowTest(win);
-
-	return ok;
+    return true;
 }
 

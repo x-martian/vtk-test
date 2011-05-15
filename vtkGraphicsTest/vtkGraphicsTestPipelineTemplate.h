@@ -29,13 +29,14 @@ public:
 
 		// map to graphics library
 		T::MapperType *mapper = T::MapperType::New();
-		vtkPolyData* polyData = filter->GetOutput();
-		mapper->SetInput(polyData);
+        mapper->SetInputConnection(filter->GetOutputPort());
+        filter->Delete();
 		mapper->ScalarVisibilityOff();
 
 		// actor coordinates geometry, properties, transformation
 		T::PropType* prop = t.GetProp();
 		prop->SetMapper(mapper);
+        mapper->Delete();
 
 		// renderers and render window
 		vtkRenderer *renA = vtkRenderer::New();
@@ -47,16 +48,20 @@ public:
 		win->SetSize(600,300);
 		win->AddRenderer(renA);
 		win->AddRenderer(renB);
+        renA->Delete(); renB->Delete();
 
 		// add the actors to the renders
 		renA->AddActor(prop);
+        prop->Delete();
 
 		mapper = T::MapperType::New();
-		T::DataType* data = T::DataType::SafeDownCast(filter->GetInput());
+//		T::DataType* data = T::DataType::SafeDownCast(filter->GetInput());
 		mapper->ScalarVisibilityOff();
 		prop = t.GetProp();
 		prop->SetMapper(mapper);
+        mapper->Delete();
 		renB->AddActor(prop);
+        prop->Delete();
 		renB->ResetCamera();
 
 		renA->SetBackground(1,1,1); // Background color white
@@ -78,18 +83,22 @@ public:
 		*/
 		vtkPolyDataMapper* cursorMapper = vtkPolyDataMapper::New();
 		cursorMapper->SetInput(cursor->GetOutput());
+        cursor->Delete();
 		vtkActor* actor = vtkActor::New();
 		actor->SetMapper(cursorMapper);
+        cursorMapper->Delete();
 		actor->GetProperty()->SetColor(1.0, 0.0, 0.0);
 
 //		renA->AddActor(actor);
 		renB->AddActor(actor);
+        actor->Delete();
 
 		// an interactor
 		vtkRenderWindowInteractor *iren = vtkRenderWindowInteractor::New();
-		I* style = I::New();
+        //I* style = I::New();
 		//iren->SetInteractorStyle(style);
 		iren->SetRenderWindow(win);
+        iren->Delete();
 
 		// render an image (lights and cameras are created automatically)
 		win->Render();
@@ -97,6 +106,8 @@ public:
 
 	~vtkGraphicsTestPipelineTemplate(void)
 	{
+        if (win)
+            win->Delete();
 	}
 
 	void StartInteraction(void)

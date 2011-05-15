@@ -8,10 +8,12 @@
 
 bool vtkGraphicsTest(bool on)
 {
-	bool result = true;
-	result = result && vtkCutterTest(true);
-	result = result && vtkCursor2DTest(true);
-	result = result && vtkVoxelContourToSurfaceFilterTest(true);
-	return result;
+    if (on) {
+        on = on && vtkCutterTest(on);
+        on = on && vtkCursor2DTest(on);
+        on = on && vtkVoxelContourToSurfaceFilterTest(on);
+        return on;
+    }
+    return true;
 }
 

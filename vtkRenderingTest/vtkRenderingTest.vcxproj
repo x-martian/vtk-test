@@ -184,6 +184,7 @@
     <ClInclude Include="vtkActor2DTest.h" />
     <ClInclude Include="vtkActorTest.h" />
     <ClInclude Include="vtkImageActorTest.h" />
+    <ClInclude Include="vtkRendererTest.h" />
     <ClInclude Include="vtkRenderingTest.h" />
     <ClInclude Include="vtkRenderingTestPipeline.h" />
     <ClInclude Include="vtkViewPortTest.h" />

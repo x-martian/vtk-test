@@ -19,6 +19,7 @@ public:
 		vtkImageMapToWindowLevelColors* imgMap = vtkImageMapToWindowLevelColors::New();
 		imgMap->SetOutputFormatToLuminance();
 		imgMap->SetInputConnection(filter->GetOutputPort());
+        filter->Delete();
 		imgMap->SetWindow(1600.0);
 		imgMap->SetLevel(800.0);
 
@@ -26,6 +27,7 @@ public:
 		vtkImageActor* actor = vtkImageActor::New();
 		actor->InterpolateOff();
 		actor->SetInput(imgMap->GetOutput());
+        imgMap->Delete();
 
 		// renderers and render window
 		vtkRenderer *renA = vtkRenderer::New();
@@ -36,16 +38,19 @@ public:
 		win = vtkRenderWindow::New();
 		win->SetSize(600,300);
 		win->AddRenderer(renA);
+        renA->Delete();
 //		win->AddRenderer(renB);
 
 		// add the actors to the renders
 		renA->AddActor(actor);
+        actor->Delete();
 
 //		renB->ResetCamera();
 
 		// an interactor
 		vtkRenderWindowInteractor *iren = vtkRenderWindowInteractor::New();
 		iren->SetRenderWindow(win);
+        iren->Delete();
 
 		vtkInteractorStyleImage* imgStyle = vtkInteractorStyleImage::New();
 		iren->SetInteractorStyle(imgStyle);
@@ -64,6 +69,8 @@ public:
 
 	~vtkImagingTestPipelineTemplate(void)
 	{
+        if (win)
+            win->Delete();
 	}
 
 	void StartInteraction(void)

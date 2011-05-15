@@ -22,6 +22,7 @@ bool vtkViewportTest::Run(bool on)
 	viewport->SetPixelAspect(1.0, 1.0);
 	viewport->SetViewport(0.0, 1.0, 0.0, 1.0);
 	viewport->ComputeAspect();
+    viewport->Delete();
 
 	vtkViewportTest test;
 //	vtkFilteringTestPipelineTemplate<vtkViewportTest> pipeline(test);

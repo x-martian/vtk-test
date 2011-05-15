@@ -42,6 +42,9 @@ bool vtkActorTest(vtkActor*& actor, bool on)
 
 bool vtkActorPositionTest(bool on)
 {
+    if (!on)
+        return true;
+
 	lemon::test<> t;
 
 	SpherePipeline pipeline;
@@ -73,6 +76,9 @@ bool vtkActorPositionTest(bool on)
 
 bool vtkActorOriginTest(bool on)
 {
+    if (!on)
+        return true;
+
 	lemon::test<> t;
 
 	SpherePipeline pipeline;

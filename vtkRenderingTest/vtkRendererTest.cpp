@@ -7,11 +7,11 @@
 #include "vtkRenderingTest.h"
 #include "../lemon.h"
 
-bool vtkRendererTest(vtkRenderer*& out, bool on)
+bool vtkRendererTest(bool on)
 {
 	lemon::test<> t;
 
-	out = vtkRenderer::New();
+	vtkRenderer* out = vtkRenderer::New();
 
 	on && t.is(out->GetActors()->GetNumberOfItems(), 0, "initially no actor");
 	on && t.is(out->GetActors2D()->GetNumberOfItems(), 0, "initially no 2D actor");
@@ -36,6 +36,7 @@ bool vtkRendererTest(vtkRenderer*& out, bool on)
 	vtkActor* actor;
 	vtkActorTest(actor, false);
 	out->AddActor(actor);
+    actor->Delete();
 
 	out->ResetCamera();
 	double bounds[6];
@@ -79,6 +80,9 @@ bool vtkRendererTest(vtkRenderer*& out, bool on)
 	out->GetWorldPoint(worldPoint);
 
 	if(on) out->PrintSelf(std::cout, vtkIndent(1));
+
+    out->Delete();
+    win->Delete();
 
 	return on ? t.done() : !on;
 }

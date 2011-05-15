@@ -178,17 +178,16 @@ public:
 		points->Delete();
 		cells->Delete();
 
-		filter->SetInput(poly);
+        filter->SetInput(poly); poly->Delete();
 
 		vtkTransformPolyDataFilter* xformFilter = vtkTransformPolyDataFilter::New();
-		xformFilter->SetInputConnection(filter->GetOutputPort());
+        xformFilter->SetInputConnection(filter->GetOutputPort()); filter->Delete();
 		vtkMatrix4x4* matrix = vtkMatrix4x4::New();
 		double elem[16] = {1.0, 0.0, 0.0, 0.0,  0.0, -1.0, 0.0, 0.0,  0.0, 0.0, -1.0, 75.0,  0.0, 0.0, 0.0, 1.0};
 		matrix->DeepCopy(elem);
 		vtkTransform* xform = vtkTransform::New();
 		xform->SetMatrix(matrix);
-		xformFilter->SetTransform(xform);
-		xform->Delete();
+        xformFilter->SetTransform(xform); xform->Delete();
 		matrix->Delete();
 
 		return xformFilter;
@@ -244,7 +243,7 @@ public:
 		points->Delete();
 		cells->Delete();
 
-		filter->SetInput(poly);
+        filter->SetInput(poly); poly->Delete();
 
 		return filter;
 	}
@@ -268,8 +267,10 @@ public:
 		poly->SetGlobalWarningDisplay(1);
 		poly->SetPoints(points);
 		poly->SetPolys(cells);
+        points->Delete();
+        cells->Delete();
 
-		filter->AddInput(poly);
+        filter->AddInput(poly); poly->Delete();
 		return filter;
 	}
 
@@ -297,10 +298,11 @@ public:
 
 bool vtkActor2DTest(bool on)
 {
-	vtkActor2DDriver driver;
-	vtkRenderingTestPipeline<vtkActor2DDriver, vtkInteractorStyleImage> pipeline(driver);
+    if (on) {
+    	vtkActor2DDriver driver;
+	    vtkRenderingTestPipeline<vtkActor2DDriver, vtkInteractorStyleImage> pipeline(driver);
 
-	pipeline.StartInteraction();
-
+    	pipeline.StartInteraction();
+    }
 	return true;
 }

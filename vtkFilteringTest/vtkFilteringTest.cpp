@@ -8,10 +8,12 @@
 
 bool vtkFilteringTest(bool on)
 {
-	bool result = on;
-    result = result && vtkPolyDataTest::Run(on);
-	result = result && vtkViewportTest::Run(on);
-	result = result && vtkImageDataTest::Run(true);
-	return result || !on;
+    if (on) {
+        on = on && vtkPolyDataTest::Run(on);
+        on = on && vtkViewportTest::Run(on);
+        on = on && vtkImageDataTest::Run(on);
+        return false;
+    }
+    return true;
 }
 

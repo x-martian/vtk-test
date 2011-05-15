@@ -70,6 +70,7 @@ vtkVoxelContoursToSurfaceFilterDriver::FilterType* vtkVoxelContoursToSurfaceFilt
 		vtkPolyData* circle = vtkPolyData::New();
 		CreateCircle( z, radius, resolution, circle );
 		appendFilter->AddInput( circle );
+        circle->Delete();
 	}
 
 	double deltaz = z - lastz;
@@ -102,11 +103,13 @@ vtkVoxelContoursToSurfaceFilterDriver::FilterType* vtkVoxelContoursToSurfaceFilt
 	}
 	poly->SetPolys( contours->GetPolys() );
 	poly->SetPoints( points );
+    points->Delete();
 
 	// Create the contour to surface filter
 	//
 	vtkVoxelContoursToSurfaceFilter* contoursToSurface = vtkVoxelContoursToSurfaceFilter::New();
 	contoursToSurface->SetInput( poly );
+    poly->Delete();
 	contoursToSurface->SetSpacing( spacing[0], spacing[1], spacing[2] );
 	contoursToSurface->Update();
 
@@ -121,14 +124,17 @@ vtkVoxelContoursToSurfaceFilterDriver::FilterType* vtkVoxelContoursToSurfaceFilt
 
 	vtkTransformPolyDataFilter* transformFilter = vtkTransformPolyDataFilter::New();
 	transformFilter->SetInputConnection( contoursToSurface->GetOutputPort() );
+    contoursToSurface->Delete();
 	vtkTransform* transform = vtkTransform::New();
 	transformFilter->SetTransform( transform );
+    transform->Delete();
 	transform->Translate( -scaleCenter[0], -scaleCenter[1], -scaleCenter[2] );
 	transform->Scale( 
 		(bounds[1] - bounds[0])/(scaleBounds[1] - scaleBounds[0]),
 		(bounds[3] - bounds[2])/(scaleBounds[3] - scaleBounds[2]),
 		(bounds[5] - bounds[4])/(scaleBounds[5] - scaleBounds[4]) );
 	transform->Translate( center[0], center[1], center[2] );
+    appendFilter->Delete();
 
 	return transformFilter;
 }
@@ -146,12 +152,15 @@ vtkVoxelContoursToSurfaceFilterDriver::PropType* vtkVoxelContoursToSurfaceFilter
 
 bool vtkVoxelContourToSurfaceFilterTest(bool on)
 {
-	lemon::test<> t;
+    if (!on)
+        return true;
 
-	vtkVoxelContoursToSurfaceFilterDriver driver; 
-	vtkGraphicsTestPipelineTemplate<vtkVoxelContoursToSurfaceFilterDriver> pipeline(driver);
+    lemon::test<> t;
 
-	pipeline.StartInteraction();
+    vtkVoxelContoursToSurfaceFilterDriver driver; 
+    vtkGraphicsTestPipelineTemplate<vtkVoxelContoursToSurfaceFilterDriver> pipeline(driver);
 
-	return t.done();
+    pipeline.StartInteraction();
+
+    return t.done();
 }

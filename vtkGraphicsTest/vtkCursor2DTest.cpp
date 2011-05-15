@@ -40,6 +40,9 @@ vtkCursor2DDriver::PropType* vtkCursor2DDriver::GetProp()
 
 bool vtkCursor2DTest(bool on)
 {
+    if (!on)
+        return true;
+
 	lemon::test<> t;
 
 	vtkCursor2DDriver driver;

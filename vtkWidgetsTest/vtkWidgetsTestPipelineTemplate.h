@@ -13,6 +13,8 @@ public:
 		renA->SetViewport(0.0, 0.0, 1.0, 1.0);
 
 		vtkRenderWindow* win = vtkRenderWindow::New();
+        win->LineSmoothingOn();
+        //win->SetPolygonSmoothing(10);
 		win->SetSize(300,300);
 		win->AddRenderer(renA);
         renA->Delete();
@@ -43,9 +45,18 @@ public:
             interactor->Start();
     };
 
+    static bool Run(bool on) {
+        if (on) {
+            T test;
+            vtkWidgetsTestPipelineTemplate pipe(test);
+            pipe.StartInteractor();
+        }
+        return true;
+    }
+
 private:
 	T& t;
     vtkRenderWindowInteractor* interactor;
-    vtkAbstractWidget* widget;
+    vtkInteractorObserver* widget;
 };
 

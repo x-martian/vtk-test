@@ -6,9 +6,10 @@
 
 bool vtkImagingTest(bool on)
 {
-	bool rv = true;
-	rv = rv && vtkImageResliceTest(true);
-
-	return rv;
+    if (on) {
+        on = on && vtkImageResliceTest(true);
+        return on;
+    }
+    return true;
 }
 

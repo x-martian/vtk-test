@@ -3,9 +3,11 @@
 
 bool vtkCommonTest(bool on)
 {
-	bool result = on;
-	result = result && vtkTransformTest::Run(on);
-	result = result && vtkWindowTest::Run(on);
-	return result || !on;
+    if (on) {
+	    on = on && vtkTransformTest::Run(on);
+	    on = on && vtkWindowTest::Run(on);
+	    return on;
+    }
+    return true;
 }
 

@@ -80,5 +80,7 @@ bool vtkTransformTest::Run(bool on)
     t.is(pp[1], translate[1], "verifying the y-component");
     t.is(pp[2], translate[2], "verifying the z-component");
 
+    xform->Delete();
+
     return t.done();
 }

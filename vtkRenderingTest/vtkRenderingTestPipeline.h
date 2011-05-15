@@ -45,8 +45,8 @@ public:
 
 		win = vtkRenderWindow::New();
 		win->SetSize(600,300);
-		win->AddRenderer(renA);
-		win->AddRenderer(renB);
+        win->AddRenderer(renA); renA->Delete();
+        win->AddRenderer(renB); renB->Delete();
 
 		typedef T::DataType DataType;
 		typedef T::FilterType FilterType;
@@ -63,6 +63,7 @@ public:
 		// map to graphics library
 		mapper = t.GetMapper();
 		mapper->SetInputConnection(filter->GetOutputPort());
+        filter->Delete();
 
 		// actor coordinates geometry, properties, transformation
 		prop = t.GetProp();
@@ -73,6 +74,7 @@ public:
 
 		// add the actors to the renders
 		renA->AddActor(prop);
+        prop->Delete();
 		renA->SetActiveCamera(camera);
 		camera->Delete();
 
@@ -82,6 +84,7 @@ public:
 		// map to graphics library
 		mapper = t.GetMapper();
 		mapper->SetInputConnection(filter->GetOutputPort());
+        filter->Delete();
 
 		// actor coordinates geometry, properties, transformation
 		prop = t.GetProp();
@@ -90,6 +93,7 @@ public:
 
 		// add the actors to the renders
 		renB->AddActor(prop);
+        prop->Delete();
 		camera = C::Camera(1);
 		renB->SetActiveCamera(camera);
 		camera->Delete();
@@ -110,12 +114,11 @@ public:
 		vtkRenderWindowInteractor *iren = vtkRenderWindowInteractor::New();
 		I* style = I::New();
 		iren->SetInteractorStyle(style);
+        style->Delete();
 		iren->SetRenderWindow(win);
+        iren->Delete();
 
-		// render an image (lights and cameras are created automatically)
 		win->Render();
-
-		prop->Delete();
 	}
 
 	~vtkRenderingTestPipeline(void)
@@ -134,4 +137,3 @@ private:
 
 	vtkRenderWindow* win;
 };
-

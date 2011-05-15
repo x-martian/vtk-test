@@ -94,7 +94,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\vtkRenderingTest;..\..\source\Widgets;..\..\source\Imaging;..\..\source\Common;..\..\source\Rendering;..\..\source\Filtering;..\..\source\Graphics;..\..\bin;..\..\bin\Rendering;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\vtkFilteringTest;..\vtkRenderingTest;..\..\source\Widgets;..\..\source\Imaging;..\..\source\Common;..\..\source\Rendering;..\..\source\Filtering;..\..\source\Graphics;..\..\bin;..\..\bin\Rendering;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,7 +127,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\vtkRenderingTest;..\..\source\Widgets;..\..\source\Imaging;..\..\source\Common;..\..\source\Rendering;..\..\source\Filtering;..\..\source\Graphics;..\..\bin;..\..\bin\Rendering;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\vtkFilteringTest;..\vtkRenderingTest;..\..\source\Widgets;..\..\source\Imaging;..\..\source\Common;..\..\source\Rendering;..\..\source\Filtering;..\..\source\Graphics;..\..\bin;..\..\bin\Rendering;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,6 +141,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="vtkAxesTransformWidgetTest.h" />
     <ClInclude Include="vtkBalloonWidgetTest.h" />
+    <ClInclude Include="vtkImagePlaneWidgetTest.h" />
     <ClInclude Include="vtkTextWidgetTest.h" />
     <ClInclude Include="vtkWidgetsTest.h" />
     <ClInclude Include="vtkWidgetsTestPipelineTemplate.h" />
@@ -149,6 +150,7 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="vtkAxesTransformWidgetTest.cpp" />
     <ClCompile Include="vtkBalloonWidgetTest.cpp" />
+    <ClCompile Include="vtkImagePlaneWidgetTest.cpp" />
     <ClCompile Include="vtkTextWidgetTest.cpp" />
     <ClCompile Include="vtkWidgetsTest.cpp" />
   </ItemGroup>

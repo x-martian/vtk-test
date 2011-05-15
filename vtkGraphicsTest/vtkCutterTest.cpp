@@ -104,11 +104,13 @@ vtkCutterDriver::FilterType* vtkCutterDriver::GetFilter()
 		poly->SetPoints(points);
 		poly->SetPolys(cells);
 
-		//points->Delete();
-		//cells->Delete();
+    points->Delete();
+    cells->Delete();
 
-		//return poly;
-	append->AddInput(poly);
+    //return poly;
+    append->AddInput(poly);
+    poly->Delete();
+
 	return append;
 }
 /*
@@ -218,11 +220,14 @@ vtkCutterDriver::PropType* vtkCutterDriver::GetProp()
 
 bool vtkCutterTest(bool on)
 {
-	lemon::test<> t;
+    if (!on)
+        return true;
 
-	vtkCutterDriver driver;
-	vtkGraphicsTestPipelineTemplate<vtkCutterDriver> pipeline(driver);
-	pipeline.StartInteraction();
+    lemon::test<> t;
 
-	return t.done();
+    vtkCutterDriver driver;
+    vtkGraphicsTestPipelineTemplate<vtkCutterDriver> pipeline(driver);
+    pipeline.StartInteraction();
+
+    return t.done();
 }

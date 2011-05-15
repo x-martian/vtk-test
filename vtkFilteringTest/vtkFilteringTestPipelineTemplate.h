@@ -16,59 +16,64 @@
 template<typename T, typename typename I=vtkInteractorStyle> class vtkFilteringTestPipelineTemplate
 {
 public:
+    typedef typename T::DataType DataType;
+    typedef typename T::FilterType FilterType;
+    typedef typename T::MapperType MapperType;
+    typedef typename T::PropType PropType;
 
-	vtkFilteringTestPipelineTemplate(T& test) : t(test)
-	{
-		typedef T::DataType DataType;
-        typedef T::FilterType FilterType;
-		typedef T::MapperType MapperType;
-        typedef T::PropType PropType;
-		
-		FilterType *filter = t.GetFilter();
-		MapperType *mapper = t.GetMapper();
+    vtkFilteringTestPipelineTemplate(T& test) : t(test)
+        , win(0)
+    {
+        FilterType* filter = t.GetFilter();
+        MapperType *mapper = t.GetMapper();
+        mapper->SetInputConnection(filter->GetOutputPort());
+        filter->Delete();
 
-		mapper->SetInputConnection(filter->GetOutputPort());
+        // actor coordinates geometry, properties, transformation
+        PropType* prop = t.GetProp();
+        prop->SetMapper(mapper);
+        mapper->Delete();
 
-		// actor coordinates geometry, properties, transformation
-		PropType* prop = t.GetProp();
-		prop->SetMapper(mapper);
-        
-		// renderers and render window
-		vtkRenderer *renA = vtkRenderer::New();
+        // renderers and render window
+        vtkRenderer *renA = vtkRenderer::New();
         renA->AddActor(prop);
-		renA->SetViewport(0.0, 0.0, 0.5, 1.0);
+        prop->Delete();
+        renA->SetViewport(0.0, 0.0, 0.5, 1.0);
         renA->SetBackground(0.1, 0.2, 0.4);
         renA->ResetCamera();
-		vtkRenderer *renB = vtkRenderer::New();
-		renB->SetViewport(0.5, 0.0, 1.0, 1.0);
-		
-		win = vtkRenderWindow::New();
-		win->SetSize(600,300);
-		win->AddRenderer(renA);
-		win->AddRenderer(renB);
+        vtkRenderer *renB = vtkRenderer::New();
+        renB->SetViewport(0.5, 0.0, 1.0, 1.0);
 
-		// an interactor
-		vtkRenderWindowInteractor *iren = vtkRenderWindowInteractor::New();
-		I* style = I::New();
-		iren->SetRenderWindow(win);
+        win = vtkRenderWindow::New();
+        win->SetSize(600,300);
+        win->AddRenderer(renA);
+        renA->Delete();
+        win->AddRenderer(renB);
+        renB->Delete();
 
-		win->Render();
-	}
+        // an interactor
+        vtkRenderWindowInteractor *iren = vtkRenderWindowInteractor::New();
+        //I* style = I::New();
+        iren->SetRenderWindow(win);
+        iren->Delete();
 
-	~vtkFilteringTestPipelineTemplate(void)
-	{
-		if (win)
-			win->Delete();
-	}
+        win->Render();
+    }
 
-	void StartInteraction(void)
-	{
-		win->GetInteractor()->Start();
-	}
+    ~vtkFilteringTestPipelineTemplate(void)
+    {
+        if (win)
+            win->Delete();
+    }
+
+    void StartInteraction(void)
+    {
+        win->GetInteractor()->Start();
+    }
 
 private:
-	T& t;
+    T& t;
 
-	vtkRenderWindow* win;
+    vtkRenderWindow* win;
 };
 
