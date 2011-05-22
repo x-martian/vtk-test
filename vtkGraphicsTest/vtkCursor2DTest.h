@@ -1,8 +1,8 @@
 #pragma once
 
 class vtkCursor2D;
-class vtkPolyDataMapper2D;
-class vtkActor2D;
+class vtkPolyDataMapper;
+class vtkActor;
 class vtkPolyData;
 
 class vtkCursor2DDriver
@@ -13,8 +13,8 @@ public:
 
 	typedef vtkPolyData DataType;
 	typedef vtkCursor2D FilterType;
-	typedef vtkPolyDataMapper2D MapperType;
-	typedef vtkActor2D PropType;
+	typedef vtkPolyDataMapper MapperType;
+	typedef vtkActor PropType;
 
 	FilterType* GetFilter();
 	PropType* GetProp();

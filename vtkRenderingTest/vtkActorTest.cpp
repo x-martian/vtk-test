@@ -37,6 +37,9 @@ bool vtkActorTest(vtkActor*& actor, bool on)
 
 	if(on) actor->PrintSelf(std::cout, vtkIndent(1));
 
+    if (on)
+        actor->Delete();
+
 	return on ? t.done() : !on;
 }
 

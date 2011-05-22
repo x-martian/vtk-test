@@ -19,10 +19,12 @@ Visualizer::Visualizer(void)
 	win->SetSize(600,300);
 	win->AddRenderer(renA);
 	win->AddRenderer(renB);
+    renA->Delete(); renB->Delete();
 
 	// an interactor
 	vtkRenderWindowInteractor *iren = vtkRenderWindowInteractor::New();
 	iren->SetRenderWindow(win);
+    iren->Delete();
 
 	renA->SetBackground(1,1,1); // Background color white
 	renB->SetBackground(1,1,1);
@@ -43,12 +45,15 @@ Visualizer::Visualizer(void)
 */
 	vtkPolyDataMapper* mapper = vtkPolyDataMapper::New();
 	mapper->SetInput(cursor->GetOutput());
+    cursor->Delete();
 	vtkActor* actor = vtkActor::New();
 	actor->SetMapper(mapper);
+    mapper->Delete();
 	actor->GetProperty()->SetColor(1.0, 0.0, 0.0);
 
 	renA->AddActor(actor);
 	renB->AddActor(actor);
+    actor->Delete();
 	renA->RemoveAllLights();
 	renB->RemoveAllLights();
 
@@ -58,6 +63,7 @@ Visualizer::Visualizer(void)
 
 Visualizer::~Visualizer(void)
 {
+    win->Delete();
 }
 
 void Visualizer::AddActorToViewPortA(vtkActor* actor, bool reset)
@@ -75,6 +81,7 @@ void Visualizer::AddActorToViewPort(vtkActor* actor, int viewPort, bool reset)
 	vtkRendererCollection* c = win->GetRenderers();
 	vtkRenderer& renderer = *vtkRenderer::SafeDownCast(c->GetItemAsObject(viewPort));
 	renderer.AddActor(actor);
+    actor->Delete();
 
 	if (reset) renderer.ResetCamera();
 }

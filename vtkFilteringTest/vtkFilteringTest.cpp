@@ -12,7 +12,7 @@ bool vtkFilteringTest(bool on)
         on = on && vtkPolyDataTest::Run(on);
         on = on && vtkViewportTest::Run(on);
         on = on && vtkImageDataTest::Run(on);
-        return false;
+        return on;
     }
     return true;
 }

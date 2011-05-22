@@ -5,9 +5,9 @@
 #include "vtkRenderingTest.h"
 #include "vtkActor2DTest.h"
 
-vtkRenderWindow* win;
+vtkRenderWindow* win=0;
 vtkRenderer* rndrr;
-vtkActor* actor;
+vtkActor* actor=0;
 
 int coordinateConversion(void);
 
@@ -15,12 +15,12 @@ bool vtkRenderingTest(bool on)
 {
     if (on) {
         //coordinateConversion();
-        on = on && vtkRendererTest(true);
-        on = on && vtkActor2DTest(false);
-        on = on && vtkActorPositionTest(false);
-        on = on && vtkActorOriginTest(false);
-        //on = on && vtkActorTest(actor);
-        //on = on && vtkRenderWindowTest(win);
+        on = on && vtkRendererTest(on);
+        on = on && vtkActor2DTest(on);
+        on = on && vtkActorPositionTest(on);
+        on = on && vtkActorOriginTest(on);
+        on = on && vtkActorTest(actor, on);
+        on = on && vtkRenderWindowTest(win, on);
         return on;
     }
 

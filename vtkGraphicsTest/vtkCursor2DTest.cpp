@@ -50,7 +50,7 @@ bool vtkCursor2DTest(bool on)
 	//vtkGraphicsTestPipelineTemplate<vtkCursor2DDriver, vtkInteractorStyleImage> pipeline(driver);
 
 	COLORREF color = pipeline.GetDisplayColor(30,20);
-	t.is(color, RGB(0,0,255), "verify left color");
+	t.is(color, RGB(255,255,255), "verify left color");
 
 	pipeline.StartInteraction();
 

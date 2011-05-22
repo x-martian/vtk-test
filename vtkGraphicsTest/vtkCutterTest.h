@@ -2,18 +2,16 @@
 
 class vtkPolyData;
 class vtkCutter;
-class vtkAppendPolyData;
-class vtkPolyDataMapper2D;
-class vtkActor2D;
+class vtkPolyDataMapper;
+class vtkActor;
 
 class vtkCutterDriver
 {
 public:
 	typedef vtkPolyData DataType;
-//	typedef vtkCutter FilterType;
-	typedef vtkAppendPolyData FilterType;
-	typedef vtkPolyDataMapper2D MapperType;
-	typedef vtkActor2D PropType;
+	typedef vtkCutter FilterType;
+	typedef vtkPolyDataMapper MapperType;
+	typedef vtkActor PropType;
 
 	vtkCutterDriver(void);
 	~vtkCutterDriver(void);

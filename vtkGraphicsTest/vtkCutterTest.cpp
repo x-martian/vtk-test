@@ -41,9 +41,7 @@ vtkCutterDriver::~vtkCutterDriver(void)
 }
 
 vtkCutterDriver::FilterType* vtkCutterDriver::GetFilter()
-{/*
-	vtkAppendPolyData* append = vtkAppendPolyData::New();
-
+{
 	// create sphere geometry
 	vtkSphereSource *sphere = vtkSphereSource::New();
 	sphere->SetCenter(0.0, 0.0, 0.0);
@@ -57,9 +55,13 @@ vtkCutterDriver::FilterType* vtkCutterDriver::GetFilter()
 	
 	vtkCutter* cutter = vtkCutter::New();
 	cutter->SetCutFunction(plane);
-	cutter->SetInput(sphere->GetOutput());
-	cutter->Update();
-
+    plane->Delete();
+	cutter->SetInputConnection(sphere->GetOutputPort());
+    sphere->Delete();
+    cutter->Update();
+    return cutter;
+/*
+	vtkAppendPolyData* append = vtkAppendPolyData::New();
 	append->AddInput(cutter->GetOutput());
 	
 	plane = vtkPlane::New();
@@ -74,7 +76,7 @@ vtkCutterDriver::FilterType* vtkCutterDriver::GetFilter()
 	append->AddInput(cutter->GetOutput());
 	
 	return append;
-*/
+*//*
 	vtkAppendPolyData* append = vtkAppendPolyData::New();
 		vtkPoints* points = vtkPoints::New();
 		vtkCellArray* cells = vtkCellArray::New();
@@ -112,7 +114,7 @@ vtkCutterDriver::FilterType* vtkCutterDriver::GetFilter()
     poly->Delete();
 
 	return append;
-}
+*/}
 /*
 vtkCutterDriver::FilterType* vtkCutterDriver::GetFilter()
 {
@@ -206,12 +208,12 @@ vtkCutterDriver::PropType* vtkCutterDriver::GetProp()
 {
 	PropType* actor = PropType::New();
 	actor->GetProperty()->SetColor(0, 1.0, 0.0); // sphere color blue
-//	actor->GetProperty()->SetRepresentationToWireframe();
-//	actor->GetProperty()->ShadingOff();
-//	actor->GetProperty()->SetEdgeVisibility(0);
+	actor->GetProperty()->SetRepresentationToWireframe();
+	actor->GetProperty()->ShadingOff();
+	actor->GetProperty()->SetEdgeVisibility(0);
 	actor->GetProperty()->SetLineWidth(1.6);
-//	actor->GetProperty()->SetAmbientColor(1.0, 1.0, 1.0);
-//	actor->GetProperty()->SetDiffuseColor(1.0, 1.0, 1.0);
+	actor->GetProperty()->SetAmbientColor(1.0, 1.0, 1.0);
+	actor->GetProperty()->SetDiffuseColor(1.0, 1.0, 1.0);
 	actor->GetProperty()->SetOpacity(1.0);
 
 	return actor;

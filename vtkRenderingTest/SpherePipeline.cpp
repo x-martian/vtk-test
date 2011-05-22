@@ -13,7 +13,7 @@ SpherePipeline::~SpherePipeline(void)
 {
 }
 
-vtkActor* SpherePipeline::GetActor() const
+vtkActor* SpherePipeline::GetActor()
 {
 	// create sphere geometry
 	vtkSphereSource *sphere = vtkSphereSource::New();
@@ -25,10 +25,12 @@ vtkActor* SpherePipeline::GetActor() const
 	// map to graphics library
 	vtkPolyDataMapper *map = vtkPolyDataMapper::New();
 	map->SetInput(sphere->GetOutput());
+    sphere->Delete();
 
 	// actor coordinates geometry, properties, transformation
 	vtkActor *actor = vtkActor::New();
 	actor->SetMapper(map);
+    map->Delete();
 	actor->GetProperty()->SetColor(0,0,1); // sphere color blue
 
 	return actor;

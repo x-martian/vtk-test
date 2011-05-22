@@ -65,7 +65,7 @@ bool vtkRenderWindowTest(vtkRenderWindow*& win, bool on)
 	on && t.ok(win->GetGenericWindowId()!=(void*)0, "window created");
 	on && t.ok(win->IsCurrent(), "is current");
 	on && t.ok(win->IsDirect()==1, "using hardware acceleratio");
-	on && t.is(win->GetColorBufferSizes(rgbs), 24, "Default Color buffer changed after Start()");
+	on && t.is(win->GetColorBufferSizes(rgbs), 32, "Default Color buffer changed after Start()");
 	on && t.diag(win->ReportCapabilities());
 	on && t.is(win->GetSize()[0], 300, "render window width (size) after Start()");
 
@@ -84,7 +84,8 @@ bool vtkRenderWindowTest(vtkRenderWindow*& win, bool on)
 	float* rgbaPixelData = win->GetRGBAPixelData(0,0,0,0,1);
 	on && t.is(unsigned(rgbaPixelData[0]*255.0+0.5), 128, "The final pixel value is the nearest integer of the value multiplied by the color depth");
 	on && t.is(unsigned(rgbaPixelData[1]*255.0+0.5), 64, "");
-	on && t.is(rgbaPixelData[3], 1.0, "the alpha is always one");
+	on && t.is(unsigned(rgbaPixelData[3]*255.0+0.5), 128, "The final pixel value is the nearest integer of the value multiplied by the color depth");
+//	on && t.is(rgbaPixelData[3], int(0.5*255.0+0.5)/255.0, "the alpha is always one");
 
 	vtkRenderWidnowInvariantDuringStartandRender(win, t, on);
 
@@ -97,6 +98,6 @@ bool vtkRenderWindowTest(vtkRenderWindow*& win, bool on)
 	on && t.isnt(win->GetScreenSize()[0], win->GetSize()[0], "BAD: GetScreenSize() resizes the render window");
 
 	if (on) win->PrintSelf(std::cout, vtkIndent());
-
-	return on ? t.done() : !on;
+    
+	return on ? win->Delete(), t.done() : !on;
 }

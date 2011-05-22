@@ -9,7 +9,7 @@ public:
 	SpherePipeline(void);
 	~SpherePipeline(void);
 
-	vtkActor* GetActor() const;
+	static vtkActor* GetActor();
 private:
 	vtkSphereSource* source;
 };
