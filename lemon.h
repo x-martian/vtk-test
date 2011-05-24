@@ -37,6 +37,7 @@
 // C++ includes
 #include <string>
 #include <iostream>
+#include <stdarg.h>
 
 ///////////////////////////////////////////////////////////////////////////////
 // Macro: LEMON_SKIP
@@ -236,7 +237,20 @@ namespace lemon {
     output_ << "# " << message << "\n";
 	return true;
   }
-  
+
+  bool diag(int argc, ...) {
+      va_list args;
+      va_start(args, argc);
+      output_ << "#";
+      for (int i=0; i<argc; ++i) {
+          char* arg = va_arg(args, char*);
+          output_ << ' ' << arg;
+      }
+      va_end(args);
+      output_ << "\n";
+      return true;
+  }
+
   /////////////////////////////////////////////////////////////////////////////
   // Function: ok
   //
@@ -441,6 +455,15 @@ namespace lemon {
 
   static double dbl_rnd() {
 	  return rand()/(double)RAND_MAX - 0.5;
+  }
+
+  void Increase() {
+      ++indent_;
+  }
+
+  void Decreate() {
+      if (indent_>0)
+          --indent_;
   }
 
   private:
