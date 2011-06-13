@@ -14,6 +14,9 @@ bool vtkWidgetsTest(bool on)
 
 	bool ok = true;
     ok = ok && vtkWidgetsTestPipelineTemplate<vtkImagePlaneWidgetTest>::Run(true);
+    // TODO investigate the cause of the revealing of cover from the backside
+    // in the test below
+    // hint: the ghost line does not appear if this is the first test
     ok = ok && vtkTextWidgetTest::Run(true);
     ok = ok && vtkBalloonWidgetTest::Run(true);
 

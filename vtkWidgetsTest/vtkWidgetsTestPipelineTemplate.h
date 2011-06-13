@@ -11,10 +11,11 @@ public:
 		// renderers and render window
 		vtkRenderer *renA = vtkRenderer::New();
 		renA->SetViewport(0.0, 0.0, 1.0, 1.0);
+        renA->SetBackground(0.1, 0.2, 0.3);
 
 		vtkRenderWindow* win = vtkRenderWindow::New();
         win->LineSmoothingOn();
-        //win->SetPolygonSmoothing(10);
+        win->PolygonSmoothingOn();
 		win->SetSize(300,300);
 		win->AddRenderer(renA);
         renA->Delete();
@@ -27,7 +28,8 @@ public:
         win->Delete();
 
         widget = t.CreateScene(*renA);
-        widget->EnabledOn();
+        if (widget)
+            widget->EnabledOn();
 
 		win->Render();
 	}

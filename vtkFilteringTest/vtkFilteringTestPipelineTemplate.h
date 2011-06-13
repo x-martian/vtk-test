@@ -45,6 +45,8 @@ public:
         renB->SetViewport(0.5, 0.0, 1.0, 1.0);
 
         win = vtkRenderWindow::New();
+        win->LineSmoothingOn();
+        win->PolygonSmoothingOn();
         win->SetSize(600,300);
         win->AddRenderer(renA);
         renA->Delete();

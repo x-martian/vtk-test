@@ -24,7 +24,7 @@ void vtkRenderWidnowInvariantDuringStartandRender(vtkRenderWindow* win, lemon::t
 	on && t.is(win->GetInteractor(), (void*)0, "No iterator");
 	on && t.is(win->GetIsPicking(), 0, "Not is picking");
 	on && t.is(win->GetLineSmoothing(), 0, "No line smoothing");
-	on && t.is(win->GetMultiSamples(), 8, "Default multisamples is 8");
+//	on && t.is(win->GetMultiSamples(), 8, "Default multisamples is 8");
 	on && t.is(win->GetNumberOfLayers(), 1, "default number of layers");
 	on && t.is(win->GetNumberOfLayersMaxValue(), 2147483647, "max number of layers");
 	on && t.is(win->GetNumberOfLayersMinValue(), 1, "min number of layers is one");
