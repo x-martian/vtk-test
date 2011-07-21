@@ -1,3 +1,5 @@
+#include "vtkAbstractArrayTest.h"
+#include "vtkInformationVectorTest.h"
 #include "vtkInformationKeyTest.h"
 #include "vtkInformationDoubleVectorKeyTest.h"
 #include "vtkInformationTest.h"
@@ -7,6 +9,8 @@
 bool vtkCommonTest(bool on)
 {
     if (on) {
+        on = on && vtkAbstractArrayTest::Run(on);
+        on = on && vtkInformationVectorTest::Run(on);
         on = on && vtkInformationKeyTest::Run(on);
         on = on && vtkInformationDoubleVectorKeyTest::Run(on);
         on = on && vtkInformationTest::Run(on);

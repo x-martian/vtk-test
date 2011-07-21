@@ -141,7 +141,9 @@
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="vtkAlgorithmOutputTest.h" />
     <ClInclude Include="vtkAlgorithmTest.h" />
+    <ClInclude Include="vtkDemandDrivenPipelineTest.h" />
     <ClInclude Include="vtkFilteringTestPipelineTemplate.h" />
     <ClInclude Include="vtkImageDataTest.h" />
     <ClInclude Include="vtkPolyDataTest.h" />
@@ -149,7 +151,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="vtkAlgorithmOutputTest.cpp" />
     <ClCompile Include="vtkAlgorithmTest.cpp" />
+    <ClCompile Include="vtkDemandDrivenPipelineTest.cpp" />
     <ClCompile Include="vtkFilteringTest.cpp" />
     <ClCompile Include="vtkImageDataTest.cpp" />
     <ClCompile Include="vtkPolyDataTest.cpp" />

@@ -31,6 +31,6 @@ private:
 std::string juice<>::indent;
 
 #define IN InstanceName()
-#define EN(name) juice<> j(IN, #name);
+#define EN(name) juice<> j(IN, #name)
 
 #endif

@@ -128,17 +128,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="vtkAbstractArrayTest.cpp" />
     <ClCompile Include="vtkCommonTest.cpp" />
     <ClCompile Include="vtkInformationDoubleVectorKeyTest.cpp" />
     <ClCompile Include="vtkInformationKeyTest.cpp" />
     <ClCompile Include="vtkInformationTest.cpp" />
+    <ClCompile Include="vtkInformationVectorTest.cpp" />
     <ClCompile Include="vtkTransformTest.cpp" />
     <ClCompile Include="vtkWindowTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="vtkAbstractArrayTest.h" />
     <ClInclude Include="vtkInformationDoubleVectorKeyTest.h" />
     <ClInclude Include="vtkInformationKeyTest.h" />
     <ClInclude Include="vtkInformationTest.h" />
+    <ClInclude Include="vtkInformationVectorTest.h" />
     <ClInclude Include="vtkTransformTest.h" />
     <ClInclude Include="vtkWindowTest.h" />
   </ItemGroup>
