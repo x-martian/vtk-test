@@ -1,0 +1,1 @@
+Visualization Toolkit (VTK) is a software library widely used in the medical and scientific community.  The software library distributes with a large collection of tests and examples.  In addition, there's a wiki where user contributed examples are collected.  This project, however, are aiming to the developers.
